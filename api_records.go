@@ -1,9 +1,9 @@
 /*
- * IONOS Cloud - DNS as a Service API
+ * IONOS Cloud - DNS API
  *
  * DNS API Specification
  *
- * API version: 0.1.0
+ * API version: 1.0.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -33,6 +33,7 @@ type ApiRecordsGetRequest struct {
 	ApiService   *RecordsApiService
 	filterZoneId *string
 	filterName   *string
+	filterState  *ProvisioningState
 	offset       *int32
 	limit        *int32
 }
@@ -43,6 +44,10 @@ func (r ApiRecordsGetRequest) FilterZoneId(filterZoneId string) ApiRecordsGetReq
 }
 func (r ApiRecordsGetRequest) FilterName(filterName string) ApiRecordsGetRequest {
 	r.filterName = &filterName
+	return r
+}
+func (r ApiRecordsGetRequest) FilterState(filterState ProvisioningState) ApiRecordsGetRequest {
+	r.filterState = &filterState
 	return r
 }
 func (r ApiRecordsGetRequest) Offset(offset int32) ApiRecordsGetRequest {
@@ -101,6 +106,9 @@ func (a *RecordsApiService) RecordsGetExecute(r ApiRecordsGetRequest) (RecordsRe
 	}
 	if r.filterName != nil {
 		localVarQueryParams.Add("filter.name", parameterToString(*r.filterName, ""))
+	}
+	if r.filterState != nil {
+		localVarQueryParams.Add("filter.state", parameterToString(*r.filterState, ""))
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))

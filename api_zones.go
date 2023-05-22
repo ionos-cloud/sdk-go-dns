@@ -1,9 +1,9 @@
 /*
- * IONOS Cloud - DNS as a Service API
+ * IONOS Cloud - DNS API
  *
  * DNS API Specification
  *
- * API version: 0.1.0
+ * API version: 1.0.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -369,13 +369,13 @@ func (a *ZonesApiService) ZonesFindByIdExecute(r ApiZonesFindByIdRequest) (ZoneR
 type ApiZonesGetRequest struct {
 	ctx            _context.Context
 	ApiService     *ZonesApiService
-	filterState    *string
+	filterState    *ProvisioningState
 	filterZoneName *string
 	offset         *int32
 	limit          *int32
 }
 
-func (r ApiZonesGetRequest) FilterState(filterState string) ApiZonesGetRequest {
+func (r ApiZonesGetRequest) FilterState(filterState ProvisioningState) ApiZonesGetRequest {
 	r.filterState = &filterState
 	return r
 }

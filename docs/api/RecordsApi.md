@@ -19,6 +19,7 @@ All URIs are relative to *https://dns.de-fra.ionos.com*
 var result RecordsResponse = RecordsGet(ctx)
                       .FilterZoneId(filterZoneId)
                       .FilterName(filterName)
+                      .FilterState(filterState)
                       .Offset(offset)
                       .Limit(limit)
                       .Execute()
@@ -38,18 +39,19 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
     filterZoneId := TODO // string | Filter used to fetch only the records that contain specified zoneId. (optional)
     filterName := "app" // string | Filter used to fetch only the records that contain specified record name. (optional)
+    filterState := openapiclient.provisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch only the records that are in certain state. (optional)
     offset := int32(56) // int32 | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. (optional) (default to 0)
     limit := int32(56) // int32 | The maximum number of elements to return. Use together with offset for pagination. (optional) (default to 100)
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.RecordsApi.RecordsGet(context.Background()).FilterZoneId(filterZoneId).FilterName(filterName).Offset(offset).Limit(limit).Execute()
+    resource, resp, err := apiClient.RecordsApi.RecordsGet(context.Background()).FilterZoneId(filterZoneId).FilterName(filterName).FilterState(filterState).Offset(offset).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.RecordsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
@@ -72,6 +74,7 @@ Other parameters are passed through a pointer to an apiRecordsGetRequest struct 
 |------------- | ------------- | ------------- | -------------|
 | **filterZoneId** | [**string**](../models/.md) | Filter used to fetch only the records that contain specified zoneId. | |
 | **filterName** | **string** | Filter used to fetch only the records that contain specified record name. | |
+| **filterState** | [**ProvisioningState**](../models/.md) | Filter used to fetch only the records that are in certain state. | |
 | **offset** | **int32** | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. | [default to 0]|
 | **limit** | **int32** | The maximum number of elements to return. Use together with offset for pagination. | [default to 100]|
 
@@ -107,7 +110,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -173,7 +176,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -241,7 +244,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -308,7 +311,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -377,7 +380,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {

@@ -1,9 +1,9 @@
 /*
- * IONOS Cloud - DNS as a Service API
+ * IONOS Cloud - DNS API
  *
  * DNS API Specification
  *
- * API version: 0.1.0
+ * API version: 1.0.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -54,7 +54,7 @@ const (
 	Version = "1.0.0"
 )
 
-// APIClient manages communication with the IONOS Cloud - DNS as a Service API API v0.1.0
+// APIClient manages communication with the IONOS Cloud - DNS API API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration

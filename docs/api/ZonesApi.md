@@ -33,7 +33,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -97,7 +97,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -167,11 +167,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
-    filterState := "CREATED" // string | Filter used to fetch all zones in a particular state (PROVISIONING, DEPROVISIONING, CREATED, FAILED). (optional)
+    filterState := openapiclient.provisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch all zones in a particular state. (optional)
     filterZoneName := "example.com" // string | Filter used to fetch only the zones that contain the specified zone name. (optional)
     offset := int32(56) // int32 | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. (optional) (default to 0)
     limit := int32(56) // int32 | The maximum number of elements to return. Use together with offset for pagination. (optional) (default to 100)
@@ -199,7 +199,7 @@ Other parameters are passed through a pointer to an apiZonesGetRequest struct vi
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **filterState** | **string** | Filter used to fetch all zones in a particular state (PROVISIONING, DEPROVISIONING, CREATED, FAILED). | |
+| **filterState** | [**ProvisioningState**](../models/.md) | Filter used to fetch all zones in a particular state. | |
 | **filterZoneName** | **string** | Filter used to fetch only the zones that contain the specified zone name. | |
 | **offset** | **int32** | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. | [default to 0]|
 | **limit** | **int32** | The maximum number of elements to return. Use together with offset for pagination. | [default to 100]|
@@ -237,7 +237,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
@@ -301,7 +301,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dnsaas"
+    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
 )
 
 func main() {
