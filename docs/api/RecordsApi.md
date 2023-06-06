@@ -16,7 +16,7 @@ All URIs are relative to *https://dns.de-fra.ionos.com*
 ## RecordsGet
 
 ```go
-var result RecordsResponse = RecordsGet(ctx)
+var result RecordReadList = RecordsGet(ctx)
                       .FilterZoneId(filterZoneId)
                       .FilterName(filterName)
                       .FilterState(filterState)
@@ -45,7 +45,7 @@ import (
 func main() {
     filterZoneId := TODO // string | Filter used to fetch only the records that contain specified zoneId. (optional)
     filterName := "app" // string | Filter used to fetch only the records that contain specified record name. (optional)
-    filterState := openapiclient.provisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch only the records that are in certain state. (optional)
+    filterState := openapiclient.ProvisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch only the records that are in certain state. (optional)
     offset := int32(56) // int32 | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. (optional) (default to 0)
     limit := int32(56) // int32 | The maximum number of elements to return. Use together with offset for pagination. (optional) (default to 100)
 
@@ -56,7 +56,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.RecordsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `RecordsGet`: RecordsResponse
+    // response from `RecordsGet`: RecordReadList
     fmt.Fprintf(os.Stdout, "Response from `RecordsApi.RecordsGet`: %v\n", resource)
 }
 ```
@@ -80,7 +80,7 @@ Other parameters are passed through a pointer to an apiRecordsGetRequest struct 
 
 ### Return type
 
-[**RecordsResponse**](../models/RecordsResponse.md)
+[**RecordReadList**](../models/RecordReadList.md)
 
 ### HTTP request headers
 
@@ -158,7 +158,7 @@ Other parameters are passed through a pointer to an apiZonesRecordsDeleteRequest
 ## ZonesRecordsFindById
 
 ```go
-var result RecordResponse = ZonesRecordsFindById(ctx, zoneId, recordId)
+var result RecordRead = ZonesRecordsFindById(ctx, zoneId, recordId)
                       .Execute()
 ```
 
@@ -190,7 +190,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.ZonesRecordsFindById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesRecordsFindById`: RecordResponse
+    // response from `ZonesRecordsFindById`: RecordRead
     fmt.Fprintf(os.Stdout, "Response from `RecordsApi.ZonesRecordsFindById`: %v\n", resource)
 }
 ```
@@ -214,7 +214,7 @@ Other parameters are passed through a pointer to an apiZonesRecordsFindByIdReque
 
 ### Return type
 
-[**RecordResponse**](../models/RecordResponse.md)
+[**RecordRead**](../models/RecordRead.md)
 
 ### HTTP request headers
 
@@ -226,7 +226,7 @@ Other parameters are passed through a pointer to an apiZonesRecordsFindByIdReque
 ## ZonesRecordsGet
 
 ```go
-var result RecordsResponse = ZonesRecordsGet(ctx, zoneId)
+var result RecordReadList = ZonesRecordsGet(ctx, zoneId)
                       .Execute()
 ```
 
@@ -257,7 +257,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.ZonesRecordsGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesRecordsGet`: RecordsResponse
+    // response from `ZonesRecordsGet`: RecordReadList
     fmt.Fprintf(os.Stdout, "Response from `RecordsApi.ZonesRecordsGet`: %v\n", resource)
 }
 ```
@@ -280,7 +280,7 @@ Other parameters are passed through a pointer to an apiZonesRecordsGetRequest st
 
 ### Return type
 
-[**RecordsResponse**](../models/RecordsResponse.md)
+[**RecordReadList**](../models/RecordReadList.md)
 
 ### HTTP request headers
 
@@ -292,8 +292,8 @@ Other parameters are passed through a pointer to an apiZonesRecordsGetRequest st
 ## ZonesRecordsPost
 
 ```go
-var result RecordResponse = ZonesRecordsPost(ctx, zoneId)
-                      .RecordCreateRequest(recordCreateRequest)
+var result RecordRead = ZonesRecordsPost(ctx, zoneId)
+                      .RecordCreate(recordCreate)
                       .Execute()
 ```
 
@@ -316,16 +316,16 @@ import (
 
 func main() {
     zoneId := TODO // string | The ID (UUID) of the DNS zone.
-    recordCreateRequest := *openapiclient.NewRecordCreateRequest(*openapiclient.NewRecordProperties("app", openapiclient.recordType("A"), "1.2.3.4")) // RecordCreateRequest | record
+    recordCreate := *openapiclient.NewRecordCreate(*openapiclient.NewRecord("app", "Type_example", "1.2.3.4")) // RecordCreate | record
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.RecordsApi.ZonesRecordsPost(context.Background(), zoneId).RecordCreateRequest(recordCreateRequest).Execute()
+    resource, resp, err := apiClient.RecordsApi.ZonesRecordsPost(context.Background(), zoneId).RecordCreate(recordCreate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.ZonesRecordsPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesRecordsPost`: RecordResponse
+    // response from `ZonesRecordsPost`: RecordRead
     fmt.Fprintf(os.Stdout, "Response from `RecordsApi.ZonesRecordsPost`: %v\n", resource)
 }
 ```
@@ -345,11 +345,11 @@ Other parameters are passed through a pointer to an apiZonesRecordsPostRequest s
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **recordCreateRequest** | [**RecordCreateRequest**](../models/RecordCreateRequest.md) | record | |
+| **recordCreate** | [**RecordCreate**](../models/RecordCreate.md) | record | |
 
 ### Return type
 
-[**RecordResponse**](../models/RecordResponse.md)
+[**RecordRead**](../models/RecordRead.md)
 
 ### HTTP request headers
 
@@ -361,8 +361,8 @@ Other parameters are passed through a pointer to an apiZonesRecordsPostRequest s
 ## ZonesRecordsPut
 
 ```go
-var result RecordResponse = ZonesRecordsPut(ctx, zoneId, recordId)
-                      .RecordUpdateRequest(recordUpdateRequest)
+var result RecordRead = ZonesRecordsPut(ctx, zoneId, recordId)
+                      .RecordEnsure(recordEnsure)
                       .Execute()
 ```
 
@@ -386,16 +386,16 @@ import (
 func main() {
     zoneId := TODO // string | The ID (UUID) of the DNS zone.
     recordId := TODO // string | The ID (UUID) of the DNS record.
-    recordUpdateRequest := *openapiclient.NewRecordUpdateRequest(*openapiclient.NewRecordProperties("app", openapiclient.recordType("A"), "1.2.3.4")) // RecordUpdateRequest | 
+    recordEnsure := *openapiclient.NewRecordEnsure(*openapiclient.NewRecord("app", "Type_example", "1.2.3.4")) // RecordEnsure | 
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.RecordsApi.ZonesRecordsPut(context.Background(), zoneId, recordId).RecordUpdateRequest(recordUpdateRequest).Execute()
+    resource, resp, err := apiClient.RecordsApi.ZonesRecordsPut(context.Background(), zoneId, recordId).RecordEnsure(recordEnsure).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RecordsApi.ZonesRecordsPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesRecordsPut`: RecordResponse
+    // response from `ZonesRecordsPut`: RecordRead
     fmt.Fprintf(os.Stdout, "Response from `RecordsApi.ZonesRecordsPut`: %v\n", resource)
 }
 ```
@@ -416,11 +416,11 @@ Other parameters are passed through a pointer to an apiZonesRecordsPutRequest st
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **recordUpdateRequest** | [**RecordUpdateRequest**](../models/RecordUpdateRequest.md) |  | |
+| **recordEnsure** | [**RecordEnsure**](../models/RecordEnsure.md) |  | |
 
 ### Return type
 
-[**RecordResponse**](../models/RecordResponse.md)
+[**RecordRead**](../models/RecordRead.md)
 
 ### HTTP request headers
 

@@ -79,7 +79,7 @@ Other parameters are passed through a pointer to an apiZonesDeleteRequest struct
 ## ZonesFindById
 
 ```go
-var result ZoneResponse = ZonesFindById(ctx, zoneId)
+var result ZoneRead = ZonesFindById(ctx, zoneId)
                       .Execute()
 ```
 
@@ -110,7 +110,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesFindById``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesFindById`: ZoneResponse
+    // response from `ZonesFindById`: ZoneRead
     fmt.Fprintf(os.Stdout, "Response from `ZonesApi.ZonesFindById`: %v\n", resource)
 }
 ```
@@ -133,7 +133,7 @@ Other parameters are passed through a pointer to an apiZonesFindByIdRequest stru
 
 ### Return type
 
-[**ZoneResponse**](../models/ZoneResponse.md)
+[**ZoneRead**](../models/ZoneRead.md)
 
 ### HTTP request headers
 
@@ -145,7 +145,7 @@ Other parameters are passed through a pointer to an apiZonesFindByIdRequest stru
 ## ZonesGet
 
 ```go
-var result ZonesResponse = ZonesGet(ctx)
+var result ZoneReadList = ZonesGet(ctx)
                       .FilterState(filterState)
                       .FilterZoneName(filterZoneName)
                       .Offset(offset)
@@ -171,7 +171,7 @@ import (
 )
 
 func main() {
-    filterState := openapiclient.provisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch all zones in a particular state. (optional)
+    filterState := openapiclient.ProvisioningState("PROVISIONING") // ProvisioningState | Filter used to fetch all zones in a particular state. (optional)
     filterZoneName := "example.com" // string | Filter used to fetch only the zones that contain the specified zone name. (optional)
     offset := int32(56) // int32 | The first element (of the total list of elements) to include in the response. Use together with limit for pagination. (optional) (default to 0)
     limit := int32(56) // int32 | The maximum number of elements to return. Use together with offset for pagination. (optional) (default to 100)
@@ -183,7 +183,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesGet`: ZonesResponse
+    // response from `ZonesGet`: ZoneReadList
     fmt.Fprintf(os.Stdout, "Response from `ZonesApi.ZonesGet`: %v\n", resource)
 }
 ```
@@ -206,7 +206,7 @@ Other parameters are passed through a pointer to an apiZonesGetRequest struct vi
 
 ### Return type
 
-[**ZonesResponse**](../models/ZonesResponse.md)
+[**ZoneReadList**](../models/ZoneReadList.md)
 
 ### HTTP request headers
 
@@ -218,8 +218,8 @@ Other parameters are passed through a pointer to an apiZonesGetRequest struct vi
 ## ZonesPost
 
 ```go
-var result ZoneResponse = ZonesPost(ctx)
-                      .ZoneCreateRequest(zoneCreateRequest)
+var result ZoneRead = ZonesPost(ctx)
+                      .ZoneCreate(zoneCreate)
                       .Execute()
 ```
 
@@ -241,16 +241,16 @@ import (
 )
 
 func main() {
-    zoneCreateRequest := *openapiclient.NewZoneCreateRequest(*openapiclient.NewZoneCreateRequestProperties("example.com")) // ZoneCreateRequest | zone
+    zoneCreate := *openapiclient.NewZoneCreate(*openapiclient.NewZone("example.com")) // ZoneCreate | zone
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.ZonesApi.ZonesPost(context.Background()).ZoneCreateRequest(zoneCreateRequest).Execute()
+    resource, resp, err := apiClient.ZonesApi.ZonesPost(context.Background()).ZoneCreate(zoneCreate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesPost``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesPost`: ZoneResponse
+    // response from `ZonesPost`: ZoneRead
     fmt.Fprintf(os.Stdout, "Response from `ZonesApi.ZonesPost`: %v\n", resource)
 }
 ```
@@ -266,11 +266,11 @@ Other parameters are passed through a pointer to an apiZonesPostRequest struct v
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **zoneCreateRequest** | [**ZoneCreateRequest**](../models/ZoneCreateRequest.md) | zone | |
+| **zoneCreate** | [**ZoneCreate**](../models/ZoneCreate.md) | zone | |
 
 ### Return type
 
-[**ZoneResponse**](../models/ZoneResponse.md)
+[**ZoneRead**](../models/ZoneRead.md)
 
 ### HTTP request headers
 
@@ -282,8 +282,8 @@ Other parameters are passed through a pointer to an apiZonesPostRequest struct v
 ## ZonesPut
 
 ```go
-var result ZoneResponse = ZonesPut(ctx, zoneId)
-                      .ZoneUpdateRequest(zoneUpdateRequest)
+var result ZoneRead = ZonesPut(ctx, zoneId)
+                      .ZoneEnsure(zoneEnsure)
                       .Execute()
 ```
 
@@ -306,16 +306,16 @@ import (
 
 func main() {
     zoneId := TODO // string | The ID (UUID) of the DNS zone.
-    zoneUpdateRequest := *openapiclient.NewZoneUpdateRequest(*openapiclient.NewZoneUpdateRequestProperties()) // ZoneUpdateRequest | update zone
+    zoneEnsure := *openapiclient.NewZoneEnsure(*openapiclient.NewZone("example.com")) // ZoneEnsure | update zone
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.ZonesApi.ZonesPut(context.Background(), zoneId).ZoneUpdateRequest(zoneUpdateRequest).Execute()
+    resource, resp, err := apiClient.ZonesApi.ZonesPut(context.Background(), zoneId).ZoneEnsure(zoneEnsure).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesPut``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
-    // response from `ZonesPut`: ZoneResponse
+    // response from `ZonesPut`: ZoneRead
     fmt.Fprintf(os.Stdout, "Response from `ZonesApi.ZonesPut`: %v\n", resource)
 }
 ```
@@ -335,11 +335,11 @@ Other parameters are passed through a pointer to an apiZonesPutRequest struct vi
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **zoneUpdateRequest** | [**ZoneUpdateRequest**](../models/ZoneUpdateRequest.md) | update zone | |
+| **zoneEnsure** | [**ZoneEnsure**](../models/ZoneEnsure.md) | update zone | |
 
 ### Return type
 
-[**ZoneResponse**](../models/ZoneResponse.md)
+[**ZoneRead**](../models/ZoneRead.md)
 
 ### HTTP request headers
 
