@@ -41,7 +41,7 @@ func main() {
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
-    resource, resp, err := apiClient.ZonesApi.ZonesDelete(context.Background(), zoneId).Execute()
+    resp, err := apiClient.ZonesApi.ZonesDelete(context.Background(), zoneId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
