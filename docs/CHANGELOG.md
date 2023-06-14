@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.1.1 (June, 2023)
+
+### Fixes:
+
+- Fixed date parser error
+
+### Documentation:
+
+- Fixed the number of returned params for delete functions
+
 ## 1.1.0 (June, 2023)
 
 ### Features:
