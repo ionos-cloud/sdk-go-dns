@@ -33,11 +33,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
@@ -55,7 +55,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 
@@ -97,11 +97,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
@@ -237,7 +237,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
@@ -301,11 +301,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
     zoneEnsure := *openapiclient.NewZoneEnsure(*openapiclient.NewZone("example.com")) // ZoneEnsure | update zone
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
@@ -326,7 +326,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 

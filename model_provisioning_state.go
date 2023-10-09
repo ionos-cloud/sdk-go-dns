@@ -21,10 +21,10 @@ type ProvisioningState string
 
 // List of ProvisioningState
 const (
-	PROVISIONING ProvisioningState = "PROVISIONING"
-	DESTROYING   ProvisioningState = "DESTROYING"
-	AVAILABLE    ProvisioningState = "AVAILABLE"
-	FAILED       ProvisioningState = "FAILED"
+	PROVISIONINGSTATE_PROVISIONING ProvisioningState = "PROVISIONING"
+	PROVISIONINGSTATE_DESTROYING   ProvisioningState = "DESTROYING"
+	PROVISIONINGSTATE_AVAILABLE    ProvisioningState = "AVAILABLE"
+	PROVISIONINGSTATE_FAILED       ProvisioningState = "FAILED"
 )
 
 func (v *ProvisioningState) UnmarshalJSON(src []byte) error {

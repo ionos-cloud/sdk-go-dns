@@ -1,4 +1,4 @@
-module github.com/ionos-cloud/sdk-go-dns
+module github.com/ionos-cloud/go
 
 go 1.18
 
