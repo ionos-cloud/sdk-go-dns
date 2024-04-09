@@ -8,14 +8,14 @@ All URIs are relative to *https://dns.de-fra.ionos.com*
 |[**ZonesFindById**](ZonesApi.md#ZonesFindById) | **Get** /zones/{zoneId} | Retrieve a zone|
 |[**ZonesGet**](ZonesApi.md#ZonesGet) | **Get** /zones | Retrieve zones|
 |[**ZonesPost**](ZonesApi.md#ZonesPost) | **Post** /zones | Create a zone|
-|[**ZonesPut**](ZonesApi.md#ZonesPut) | **Put** /zones/{zoneId} | Ensure a zone|
+|[**ZonesPut**](ZonesApi.md#ZonesPut) | **Put** /zones/{zoneId} | Update a zone|
 
 
 
 ## ZonesDelete
 
 ```go
-var result  = ZonesDelete(ctx, zoneId)
+var result map[string]interface{} = ZonesDelete(ctx, zoneId)
                       .Execute()
 ```
 
@@ -33,11 +33,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
@@ -46,6 +46,8 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `ZonesApi.ZonesDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", resp)
     }
+    // response from `ZonesDelete`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ZonesApi.ZonesDelete`: %v\n", resource)
 }
 ```
 
@@ -55,7 +57,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 
@@ -67,13 +69,29 @@ Other parameters are passed through a pointer to an apiZonesDeleteRequest struct
 
 ### Return type
 
- (empty response body)
+**map[string]interface{}**
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+
+### URLs Configuration per Operation
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identified by `"ZonesApiService.ZonesDelete"` string.
+Similar rules for overriding default operation server index and variables apply by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```golang
+ctx := context.WithValue(context.Background(), {packageName}.ContextOperationServerIndices, map[string]int{
+    "ZonesApiService.ZonesDelete": 2,
+})
+ctx = context.WithValue(context.Background(), {packageName}.ContextOperationServerVariables, map[string]map[string]string{
+    "ZonesApiService.ZonesDelete": {
+    "port": "8443",
+},
+})
+```
 
 
 ## ZonesFindById
@@ -97,11 +115,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
     apiClient := ionoscloud.NewAPIClient(configuration)
@@ -121,7 +139,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 
@@ -140,6 +158,22 @@ Other parameters are passed through a pointer to an apiZonesFindByIdRequest stru
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+
+### URLs Configuration per Operation
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identified by `"ZonesApiService.ZonesFindById"` string.
+Similar rules for overriding default operation server index and variables apply by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```golang
+ctx := context.WithValue(context.Background(), {packageName}.ContextOperationServerIndices, map[string]int{
+    "ZonesApiService.ZonesFindById": 2,
+})
+ctx = context.WithValue(context.Background(), {packageName}.ContextOperationServerVariables, map[string]map[string]string{
+    "ZonesApiService.ZonesFindById": {
+    "port": "8443",
+},
+})
+```
 
 
 ## ZonesGet
@@ -167,7 +201,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
@@ -214,6 +248,22 @@ Other parameters are passed through a pointer to an apiZonesGetRequest struct vi
 - **Accept**: application/json
 
 
+### URLs Configuration per Operation
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identified by `"ZonesApiService.ZonesGet"` string.
+Similar rules for overriding default operation server index and variables apply by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```golang
+ctx := context.WithValue(context.Background(), {packageName}.ContextOperationServerIndices, map[string]int{
+    "ZonesApiService.ZonesGet": 2,
+})
+ctx = context.WithValue(context.Background(), {packageName}.ContextOperationServerVariables, map[string]map[string]string{
+    "ZonesApiService.ZonesGet": {
+    "port": "8443",
+},
+})
+```
+
 
 ## ZonesPost
 
@@ -237,7 +287,7 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
@@ -278,6 +328,22 @@ Other parameters are passed through a pointer to an apiZonesPostRequest struct v
 - **Accept**: application/json
 
 
+### URLs Configuration per Operation
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identified by `"ZonesApiService.ZonesPost"` string.
+Similar rules for overriding default operation server index and variables apply by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```golang
+ctx := context.WithValue(context.Background(), {packageName}.ContextOperationServerIndices, map[string]int{
+    "ZonesApiService.ZonesPost": 2,
+})
+ctx = context.WithValue(context.Background(), {packageName}.ContextOperationServerVariables, map[string]map[string]string{
+    "ZonesApiService.ZonesPost": {
+    "port": "8443",
+},
+})
+```
+
 
 ## ZonesPut
 
@@ -287,7 +353,7 @@ var result ZoneRead = ZonesPut(ctx, zoneId)
                       .Execute()
 ```
 
-Ensure a zone
+Update a zone
 
 
 
@@ -301,11 +367,11 @@ import (
     "fmt"
     "os"
 
-    ionoscloud "github.com/ionos-cloud/sdk-go-dns"
+    ionoscloud "github.com/ionos-cloud/go"
 )
 
 func main() {
-    zoneId := TODO // string | The ID (UUID) of the DNS zone.
+    zoneId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID (UUID) of the DNS zone.
     zoneEnsure := *openapiclient.NewZoneEnsure(*openapiclient.NewZone("example.com")) // ZoneEnsure | update zone
 
     configuration := ionoscloud.NewConfiguration("USERNAME", "PASSWORD", "TOKEN", "HOST_URL")
@@ -326,7 +392,7 @@ func main() {
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 |**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.|
-|**zoneId** | [**string**](../models/.md) | The ID (UUID) of the DNS zone. | |
+|**zoneId** | **string** | The ID (UUID) of the DNS zone. | |
 
 ### Other Parameters
 
@@ -346,4 +412,20 @@ Other parameters are passed through a pointer to an apiZonesPutRequest struct vi
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+
+### URLs Configuration per Operation
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identified by `"ZonesApiService.ZonesPut"` string.
+Similar rules for overriding default operation server index and variables apply by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```golang
+ctx := context.WithValue(context.Background(), {packageName}.ContextOperationServerIndices, map[string]int{
+    "ZonesApiService.ZonesPut": 2,
+})
+ctx = context.WithValue(context.Background(), {packageName}.ContextOperationServerVariables, map[string]map[string]string{
+    "ZonesApiService.ZonesPut": {
+    "port": "8443",
+},
+})
+```
 
