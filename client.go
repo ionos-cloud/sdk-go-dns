@@ -3,7 +3,7 @@
  *
  * Cloud DNS service helps IONOS Cloud customers to automate DNS Zone and Record management.
  *
- * API version: 1.15.4
+ * API version: 1.16.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -51,10 +51,10 @@ const (
 	RequestStatusFailed  = "FAILED"
 	RequestStatusDone    = "DONE"
 
-	Version = "1.2.0"
+	Version = "1.2.1"
 )
 
-// APIClient manages communication with the IONOS Cloud - DNS API API v1.15.4
+// APIClient manages communication with the IONOS Cloud - DNS API API v1.16.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
