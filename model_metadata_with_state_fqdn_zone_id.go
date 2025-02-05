@@ -3,7 +3,7 @@
  *
  * Cloud DNS service helps IONOS Cloud customers to automate DNS Zone and Record management.
  *
- * API version: 1.16.0
+ * API version: 1.17.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -29,8 +29,10 @@ type MetadataWithStateFqdnZoneId struct {
 	// Unique name of the identity that created the resource.
 	LastModifiedBy *string `json:"lastModifiedBy,omitempty"`
 	// The unique ID of the user who last modified the resource.
-	LastModifiedByUserId *string            `json:"lastModifiedByUserId,omitempty"`
-	State                *ProvisioningState `json:"state"`
+	LastModifiedByUserId *string `json:"lastModifiedByUserId,omitempty"`
+	// Unique name of the resource.
+	ResourceURN *string            `json:"resourceURN,omitempty"`
+	State       *ProvisioningState `json:"state"`
 	// A fully qualified domain name. FQDN consists of two parts - the hostname and the domain name.
 	Fqdn *string `json:"fqdn"`
 	// The ID (UUID) of the DNS zone of which record belongs to.
@@ -301,6 +303,44 @@ func (o *MetadataWithStateFqdnZoneId) HasLastModifiedByUserId() bool {
 	return false
 }
 
+// GetResourceURN returns the ResourceURN field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *MetadataWithStateFqdnZoneId) GetResourceURN() *string {
+	if o == nil {
+		return nil
+	}
+
+	return o.ResourceURN
+
+}
+
+// GetResourceURNOk returns a tuple with the ResourceURN field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MetadataWithStateFqdnZoneId) GetResourceURNOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+
+	return o.ResourceURN, true
+}
+
+// SetResourceURN sets field value
+func (o *MetadataWithStateFqdnZoneId) SetResourceURN(v string) {
+
+	o.ResourceURN = &v
+
+}
+
+// HasResourceURN returns a boolean if a field has been set.
+func (o *MetadataWithStateFqdnZoneId) HasResourceURN() bool {
+	if o != nil && o.ResourceURN != nil {
+		return true
+	}
+
+	return false
+}
+
 // GetState returns the State field value
 // If the value is explicit nil, the zero value for ProvisioningState will be returned
 func (o *MetadataWithStateFqdnZoneId) GetState() *ProvisioningState {
@@ -439,6 +479,10 @@ func (o MetadataWithStateFqdnZoneId) MarshalJSON() ([]byte, error) {
 
 	if o.LastModifiedByUserId != nil {
 		toSerialize["lastModifiedByUserId"] = o.LastModifiedByUserId
+	}
+
+	if o.ResourceURN != nil {
+		toSerialize["resourceURN"] = o.ResourceURN
 	}
 
 	if o.State != nil {

@@ -3,7 +3,7 @@
  *
  * Cloud DNS service helps IONOS Cloud customers to automate DNS Zone and Record management.
  *
- * API version: 1.16.0
+ * API version: 1.17.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -30,6 +30,8 @@ type Metadata struct {
 	LastModifiedBy *string `json:"lastModifiedBy,omitempty"`
 	// The unique ID of the user who last modified the resource.
 	LastModifiedByUserId *string `json:"lastModifiedByUserId,omitempty"`
+	// Unique name of the resource.
+	ResourceURN *string `json:"resourceURN,omitempty"`
 }
 
 // NewMetadata instantiates a new Metadata object
@@ -292,6 +294,44 @@ func (o *Metadata) HasLastModifiedByUserId() bool {
 	return false
 }
 
+// GetResourceURN returns the ResourceURN field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *Metadata) GetResourceURN() *string {
+	if o == nil {
+		return nil
+	}
+
+	return o.ResourceURN
+
+}
+
+// GetResourceURNOk returns a tuple with the ResourceURN field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Metadata) GetResourceURNOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+
+	return o.ResourceURN, true
+}
+
+// SetResourceURN sets field value
+func (o *Metadata) SetResourceURN(v string) {
+
+	o.ResourceURN = &v
+
+}
+
+// HasResourceURN returns a boolean if a field has been set.
+func (o *Metadata) HasResourceURN() bool {
+	if o != nil && o.ResourceURN != nil {
+		return true
+	}
+
+	return false
+}
+
 func (o Metadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CreatedDate != nil {
@@ -316,6 +356,10 @@ func (o Metadata) MarshalJSON() ([]byte, error) {
 
 	if o.LastModifiedByUserId != nil {
 		toSerialize["lastModifiedByUserId"] = o.LastModifiedByUserId
+	}
+
+	if o.ResourceURN != nil {
+		toSerialize["resourceURN"] = o.ResourceURN
 	}
 
 	return json.Marshal(toSerialize)

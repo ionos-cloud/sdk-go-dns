@@ -3,7 +3,7 @@
  *
  * Cloud DNS service helps IONOS Cloud customers to automate DNS Zone and Record management.
  *
- * API version: 1.16.0
+ * API version: 1.17.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -17,10 +17,9 @@ import (
 
 // Record struct for Record
 type Record struct {
-	Name *string `json:"name"`
-	// Holds supported DNS resource record types. In the DNS context a record is a DNS resource record.
-	Type    *string `json:"type"`
-	Content *string `json:"content"`
+	Name    *string     `json:"name"`
+	Type    *RecordType `json:"type"`
+	Content *string     `json:"content"`
 	// Time to live for the record, recommended 3600.
 	Ttl *int32 `json:"ttl,omitempty"`
 	// Priority value is between 0 and 65535. Priority is mandatory for MX, SRV and URI record types and ignored for all other types.
@@ -33,7 +32,7 @@ type Record struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRecord(name string, type_ string, content string) *Record {
+func NewRecord(name string, type_ RecordType, content string) *Record {
 	this := Record{}
 
 	this.Name = &name
@@ -98,8 +97,8 @@ func (o *Record) HasName() bool {
 }
 
 // GetType returns the Type field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *Record) GetType() *string {
+// If the value is explicit nil, the zero value for RecordType will be returned
+func (o *Record) GetType() *RecordType {
 	if o == nil {
 		return nil
 	}
@@ -111,7 +110,7 @@ func (o *Record) GetType() *string {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Record) GetTypeOk() (*string, bool) {
+func (o *Record) GetTypeOk() (*RecordType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -120,7 +119,7 @@ func (o *Record) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value
-func (o *Record) SetType(v string) {
+func (o *Record) SetType(v RecordType) {
 
 	o.Type = &v
 

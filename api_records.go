@@ -3,7 +3,7 @@
  *
  * Cloud DNS service helps IONOS Cloud customers to automate DNS Zone and Record management.
  *
- * API version: 1.16.0
+ * API version: 1.17.0
  * Contact: support@cloud.ionos.com
  */
 
@@ -34,6 +34,7 @@ type ApiRecordsGetRequest struct {
 	filterZoneId *string
 	filterName   *string
 	filterState  *ProvisioningState
+	filterType   *RecordType
 	offset       *int32
 	limit        *int32
 }
@@ -48,6 +49,10 @@ func (r ApiRecordsGetRequest) FilterName(filterName string) ApiRecordsGetRequest
 }
 func (r ApiRecordsGetRequest) FilterState(filterState ProvisioningState) ApiRecordsGetRequest {
 	r.filterState = &filterState
+	return r
+}
+func (r ApiRecordsGetRequest) FilterType(filterType RecordType) ApiRecordsGetRequest {
+	r.filterType = &filterType
 	return r
 }
 func (r ApiRecordsGetRequest) Offset(offset int32) ApiRecordsGetRequest {
@@ -109,6 +114,9 @@ func (a *RecordsApiService) RecordsGetExecute(r ApiRecordsGetRequest) (RecordRea
 	}
 	if r.filterState != nil {
 		localVarQueryParams.Add("filter.state", parameterToString(*r.filterState, ""))
+	}
+	if r.filterType != nil {
+		localVarQueryParams.Add("filter.type", parameterToString(*r.filterType, ""))
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
